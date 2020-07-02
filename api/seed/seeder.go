@@ -13,34 +13,34 @@ import (
 var users = []models.User{
 	models.User{
 		UserName: "DawMya",
-		Email: "mya@gmail.com",
+		Email:    "mya@gmail.com",
 		Password: "user1",
 	},
 	models.User{
 		UserName: "U Ba",
-		Email: "uba@gmail.com",
+		Email:    "uba@gmail.com",
 		Password: "user2",
 	},
 	models.User{
 		UserName: "Daw Sein",
-		Email: "dawsein@gmail.com",
+		Email:    "dawsein@gmail.com",
 		Password: "user3",
 	},
 	models.User{
 		UserName: "Maung Maung",
-		Email: "maungmanug@mail.com",
+		Email:    "maungmanug@mail.com",
 		Password: "user4",
 	},
 	models.User{
 		UserName: "Chaw Chaw",
-		Email: "chawchaw@gmail.com",
+		Email:    "chawchaw@gmail.com",
 		Password: "user5",
 	},
 }
 
 func Load(db *gorm.DB) {
 	//Parsing data from books.json
-	jsonFile, err := os.Open("/home/jimesmith/go/src/github.com/OoThan/library-book-borrowing-and-returning-go-api/api/Data/books.json")
+	jsonFile, err := os.Open("books.json")
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -52,7 +52,7 @@ func Load(db *gorm.DB) {
 	err = json.Unmarshal(byteBookValue, &books)
 	if err != nil {
 		fmt.Println(err)
-//		fmt.Println(len(booksJSON), " ", len(books))
+		//		fmt.Println(len(booksJSON), " ", len(books))
 	}
 	/*fmt.Println(len(booksJSON), " ", len(books))
 	for i := 0; i < len(booksJSON)-1; i++ {
