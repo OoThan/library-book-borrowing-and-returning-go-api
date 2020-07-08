@@ -82,7 +82,7 @@ func (server *Server) Take(w http.ResponseWriter, r *http.Request) {
 		/*err = server.DB.Debug().Model(&models.Borrow{}).Where("user_id = ? and book_id = ?", uid, bid).Preload("Borrow.User").Preload("Borrow.Book").Take(&borrow).Error
 		if err != nil {
 			responses.ResponseWithJSON(w, http.StatusInternalServerError,
-				responses.Response{Code: http.StatusInternalServerError, Message: "Preload Error", Data: err})
+				responses.Response{Code: http.StatusInternalServerError, Message: "Preload Error", data: err})
 			return
 		}*/
 		responses.ResponseWithJSON(w, http.StatusCreated,
