@@ -3,31 +3,25 @@
 > A complete example of a REST-ful Library System API server in written Go (Golang)
 
 ## Quick Start
-install ***mux router***
-```
+``` bash
+# install mux router
 go get -u github.com/gorilla/mux
-```
-install ***gorm*** for MySQL Database
-```
+
+# install gorm for MySQL Database
 go get -u github.com/jinzhu/gorm
-```
-install ***jwt-go*** for user token authentication
-```
+
+# install jwt-go for user token authentication
 go get -u github.com/dgrijalva/jwt-go
-```
-install ***checkmail*** to validate email
-```
+
+# install checkmail to validate email
 go get -u github.com/badoux/checkmail
-```
-install ***crypto*** to encrypt and decrypt user password
-```
+
+# install crypto to encrypt and decrypt user password
 go get -u golang.org/x/crypto
-```
-install ***godotenv** to get .env file from os
-```
+
+# install godotenv to get .env file from os
 go get -u github.com/joho/godotenv
 ```
-
 
 ```bash
 go run main.go
@@ -36,7 +30,7 @@ go build
 ./library-book-borrowing-and-returning-go-api
 ```
 
-##Project Directory
+## Project Directory
 ```.
 ├── main.go                                 // entry file
 ├── .env                                    // for mysql and jwt-go
