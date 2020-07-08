@@ -67,7 +67,7 @@ func Load(db *gorm.DB) {
 		books[i].Status = booksJSON[i].Status
 	}*/
 
-	err = db.Debug().DropTableIfExists(&models.User{}, &models.Borrow{}, &models.Book{}).Error
+	err = db.Debug().DropTableIfExists(&models.Borrow{}, &models.User{}, &models.Book{}).Error
 	if err != nil {
 		log.Fatalf("cannot drop table: %v", err)
 	}
@@ -75,9 +75,13 @@ func Load(db *gorm.DB) {
 	if err != nil {
 		log.Fatalf("cannot migrate tables: %v", err)
 	}
+	err = db.Debug().Model(&models.Borrow{}).AddForeignKey("user_id", "users(id)", "cascade", "cascade").Error
+	if err != nil {
+		log.Fatalf("atttaching user_id foreign key error: %v ", err)
+	}
 	err = db.Debug().Model(&models.Borrow{}).AddForeignKey("book_id", "books(id)", "cascade", "cascade").Error
 	if err != nil {
-		log.Fatalf("atttaching foreign key error: %v ", err)
+		log.Fatalf("atttaching book_id foreign key error: %v ", err)
 	}
 	for i, _ := range books {
 		err = db.Debug().Model(&models.Book{}).Create(&books[i]).Error

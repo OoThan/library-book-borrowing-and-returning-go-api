@@ -64,6 +64,8 @@ func (server *Server) Take(w http.ResponseWriter, r *http.Request) {
 				responses.Response{Code: http.StatusInternalServerError, Message: "Book Id Server Error", Data: err})
 			return
 		}
+		//err = server.DB.Debug().Model(&models.Borrow{}).Where("user_").Preloads()
+
 		borrow := models.Borrow{
 			UserID: uid,
 			User: user,
@@ -77,6 +79,12 @@ func (server *Server) Take(w http.ResponseWriter, r *http.Request) {
 				responses.Response{Code: http.StatusInternalServerError, Message: "Borrow Create Server Error", Data: err})
 			return
 		}
+		/*err = server.DB.Debug().Model(&models.Borrow{}).Where("user_id = ? and book_id = ?", uid, bid).Preload("Borrow.User").Preload("Borrow.Book").Take(&borrow).Error
+		if err != nil {
+			responses.ResponseWithJSON(w, http.StatusInternalServerError,
+				responses.Response{Code: http.StatusInternalServerError, Message: "Preload Error", Data: err})
+			return
+		}*/
 		responses.ResponseWithJSON(w, http.StatusCreated,
 			responses.Response{Code: http.StatusCreated, Message: "Borrow Created", Data: borrow})
 	} else if userBooksCount >= 5 {
